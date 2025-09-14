@@ -16,14 +16,20 @@ SYSTEM_TEMPLATE_BASIC_CONVERSATION = """
 
 # 約15語のシンプルな英文生成を指示するプロンプト
 SYSTEM_TEMPLATE_CREATE_PROBLEM = """
-    Generate 1 sentence that reflect natural English used in daily conversations, workplace, and social settings:
+    Generate 1 English sentence suitable for {english_level} learners.
+    The sentence should reflect natural English used in daily conversations, workplace, and social settings:
     - Casual conversational expressions
     - Polite business language
     - Friendly phrases used among friends
     - Sentences with situational nuances and emotions
     - Expressions reflecting cultural and regional contexts
 
-    Limit your response to an English sentence of approximately 15 words with clear and understandable context.
+    Constraints:
+    - For beginners: use simple vocabulary and grammar (around 8–12 words).
+    - For intermediate learners: use slightly more complex grammar or idioms (around 12–18 words).
+    - For advanced learners: use challenging vocabulary or complex sentence structures (around 15–25 words).
+
+    Limit your response to ONE English sentence only.
 """
 
 # 問題文と回答を比較し、評価結果の生成を支持するプロンプトを作成
@@ -41,15 +47,18 @@ SYSTEM_TEMPLATE_EVALUATION = """
     1. 単語の正確性（誤った単語、抜け落ちた単語、追加された単語）
     2. 文法的な正確性
     3. 文の完成度
+    4. 意味的な正しさ（多少の言い換えでも意味が通じるかどうか）
 
-    フィードバックは以下のフォーマットで日本語で提供してください：
-
+    【出力フォーマット】
     【評価】 # ここで改行を入れる
     ✓ 正確に再現できた部分 # 項目を複数記載
     △ 改善が必要な部分 # 項目を複数記載
-    
-    【アドバイス】
-    次回の練習のためのポイント
 
+    【模範解答例】
+    問題文に最も近い自然な英文（1つ）
+
+    【アドバイス】
+    次回の練習のためのポイントと、ユーザーの努力を認める励ましのコメント
+    
     ユーザーの努力を認め、前向きな姿勢で次の練習に取り組めるような励ましのコメントを含めてください。
 """
